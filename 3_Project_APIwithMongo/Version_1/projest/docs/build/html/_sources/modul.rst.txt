@@ -1,0 +1,14 @@
+modul
+=====
+
+.. toctree::
+   :maxdepth: 4
+
+
+modul.model module
+--------------------
+
+.. automodule:: model
+    :members:
+    :undoc-members:
+    :show-inheritance:

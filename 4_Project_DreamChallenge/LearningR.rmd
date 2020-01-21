@@ -1,0 +1,352 @@
+```{r}
+
+#library
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+#This is a comment
+
+25 * 4 + 9 / 3
+
+#Numeric values:
+NA #numeric null value
+23
+0.03
+
+#Characters:
+print('hola') #Simple quotes
+print("hola") #Double quotes
+
+#Logical (without quotes) - boolean
+class(TRUE) #To know the class
+FALSE
+NA #Absence of value
+
+print('Esther') #Name as a character type
+print(21) #Age as a number type
+print('21') #Age as a character type
+
+#Assign variables -> CAN'T begin with numbers
+full_name <- "Esther Vendrell Miras" # <- // = is the same
+print(full_name)
+
+#Vectors
+spring_months <- c("March", "April", "May", "June")
+length(spring_months) #To know the number of contents in a vector
+typeof(spring_months[2]) #To know the type of elements in a vector
+phone <- c(543,232,1293)
+
+#IN R START COUNTING ELEMENTS AT POSITION 1, NOT 0.
+
+#Conditionals
+if(TRUE){
+  print("Go to sleep!")
+} else {
+  print("Wake up!")
+}
+
+#Comparision operators
+# - Less than: <
+# - Greater than: >
+# - Less than or equal to: <=
+# - Greater than or equal to: >=
+# - Is equal to: ==
+# - Is NOT equal to: !=
+10 < 12
+
+#Logical operators
+# - & (AND) 
+# - | (OR)
+# - ! (NOT/BANG)
+stopLight <- 'red';
+pedestrians = 0;
+if (stopLight == 'green' & pedestrians == 0) {
+  print("Go!");
+} else {
+  print("Stop");
+}
+
+excited <- TRUE
+print(!excited)
+
+#Calling a function
+sort(c(2,4,10,5,1)) #Sort it
+sum(5,15,10) #Sum
+unique(22,10,22,13) #Search the unique valor. EX. 22,10,13. 22 repeats so the repetition disapear
+sqrt(49) #Square = raiz cuadrada
+floor(3.14) #Rounds a decimal down to the next integer -> 3
+ceiling(3.14) #Rounds up to the next integer -> 4
+
+#Importing packages
+install.packages('package-name')
+library(package-name)
+
+#Graffics
+x <- c(1,2,3,4,5)
+y <- c(1,4,9,16,25)
+plot(x,y)
+plot(x,y, type='b')
+hist(flights$distance) #No existen pero es un ejemplo
+plot(cars)
+head(cars) #first 6 values
+#if I want 10 first values (for example):
+head(cars,10)
+summary(cars) #summary statistics of the data frame.
+
+#Read csv
+read.csv('fichero.csv') #It has to be the same directory
+read_csv('fichero.csv')
+#En el cuadrado derecho/bajo: Files - more - set as working directory
+#Obtendremos la ruta para que situarnos en el directorio actual de ficheros. 
+
+#Help
+??install
+
+#Piping
+df %>%
+  head()      # = head(df)
+
+#COLUMNS
+library(readr)
+library(dplyr)
+artists <- read_csv('artists.csv')
+
+# 1- select one column
+artist_groups <- artists %>% 
+  select(group)
+artist_groups
+
+# 2 - select multiple columns
+group_info <- artists %>% 
+  select(group,spotify_monthly_listeners,year_founded) 
+group_info
+
+# 3 - remove columns
+artists %>% select(-albums, -year_founded, -youtube_subscribers)
+
+#FILTERS -> I want rows that have faux-leather and price>25
+orders %>% filter(shoe_material == 'faux-leather',price > 25)
+# 1 - Filter the rows of artists where the genre is 'Rock' and save the result to rock_groups. View rock_groups.
+rock_groups <- artists %>% filter(genre=="Rock")
+rock_groups
+# 2 - Two conditions with filters
+popular_rock_groups <- artists %>% filter(genre=="Rock", spotify_monthly_listeners>20000000)
+popular_rock_groups
+# 3 - | (or)
+korea_or_before_2000 <- artists %>% filter(country == 'South Korea' | year_founded < 2000)
+# 4 - ! (not)
+orders %>% filter(!(shoe_color == red))
+
+#ARRANGE -> order
+group_asc <- artists %>% arrange(group) #ascendent
+  group_asc <- artists %>% arrange(desc(group)) #descendent 
+
+#ADD A COLUMN -> mutate()
+#we will have a new column called sales_tax on table df
+df %>% mutate(sales_tax = price * 0.075)
+#we can add multiple columns
+df %>% mutate(profit = price - cost_to_manufacture, in_stock = TRUE)
+
+#TRANSMUTE COLUMNS -> add new columns, drop the ones you don't need transmute()
+# add sales_tax and profit columns while dropping all other 
+df %>% trasmute(sales_tax = price * 0.075, profit = price - cost_to_manufacture)
+#if we want the same column
+df %>% transmute(breed = breed)
+
+#RENAME COLUMNS -> rename()
+#rename the column name to book_title, and columns written_by to author
+df %>% rename(book_title = name, author = written_by)
+
+#COLNAMES() // NAMES() -> return a vector containing the column names 
+original_col_names <- colnames(dogs)
+original_col_names
+  
+#LIST.FILES() -> list all documents that have the pattern
+#is the same:
+read_csv('exams_1.csv')
+read_csv('exams_2.csv')
+read_csv('exams_3.csv') == 
+  
+student_files <- list.files(pattern = "exams_.*csv")
+student_files
+
+#LAPPLY() -> do read_csv to all student_files
+df_list <- lapply(student_files, read_csv)
+
+#BIND_ROWS() -> concatenate all data frames in one
+students <- bind_rows(df_list)
+
+#NROW() -> count the number of rows
+nrow_student <- nrow(students)
+
+#GATHER() -> takes a data frame and the columns to unpack
+#each variable as a separate column
+#each row as a separate observation 
+df %>%
+  gather('col_1_to_gather','col_2_to_gather',key='col_name_variables', value='col_name_values')
+
+#COUNT() -> count fractions and probability
+exam_counts <- students %>%
+  count(exam)
+
+#DUPLICATED() -> will return logical vector telling which rows are duplicated
+fruits %>% duplicated()
+# >> [1] FALSE FALSE TRUE FALSE FALSE FALSE #what we obtain
+
+#DISTINCT() -> remove duplicates, basing on a column or all in general
+fruits %>% distinct() # -> we remove all duplicates (only remove if they are exactly in all items)
+fruits %>% distinct() %>% table() #to see a table of true and false
+#if we want to remove all basing in a item column, for example, remove all items that have the same price:
+fruits %>% distinct(price,.keep_all=TRUE)
+
+#STR_SUB() -> to split a valor and obtain the pattern we want
+#if we have a birthday (01311998) and we want separate numbers we use the function
+# Create the 'month' column
+df %>% mutate(month = str_sub(birthday,1,2)) #position 1 to 2 the month
+# Create the 'day' column
+df %>% mutate(day = str_sub(birthday,3,4)) #position 3 to 4 the day
+# Create the 'year' column
+df %>% mutate(year = str_sub(birthday,5)) #position 5 to final year
+#only the first position
+df %>% mutate(day = str_sub(birthday,1,1)) #start and end
+
+#SEPARATE() -> split not by characters (1,1), split by a common character (like "_")
+#if we have a table with a value column with "user_Kenya" and "admin_US", the second valor is the country and the first the department. We cant split like str_sub as are different number of characters. We split when we see _
+df %>% separate(type,c('user_type','country'),'_')
+#type is the column name to split
+
+#STR() -> displays the internal structure
+str(students)
+
+#GSUB() -> remove simbols from columns
+#remove the simbol $ and replace by a ' ' in the column price
+fruit %>% mutate(price=gsub('\\$','',price))
+
+#AS.NUMERIC() -> convert character strings containing numerical values to numeric
+fruit %>% mutate(price = as.numeric(price))
+
+#GGPLOT()
+
+# Here we invoke ggplot() to create a ggplot object and assign the dataframe df, saving it inside a variable named viz:
+viz <- ggplot(data=df)
+viz 
+viz <- ggplot(data=movies) #create the base of a graphic:
+
+# we have a data frame sales with the columns cost and profit. In this example, we assign the data frame sales to the ggplot() object that is initialized:
+viz <- ggplot(data=sales) + 
+       geom_point(aes(x=cost, y=profit))
+
+#examples:
+viz <- ggplot(data=movies, aes(x=imdbRating, y=nrOfWins))
+viz
+
+#ADDING GEOMS
+#geom_point() -> represents each datum as a point on the grid
+viz <- ggplot(data=df, aes(x=col1,y=col2)) +
+       geom_point()
+#geom_smooth() -> complet a line of best fit
+viz <- ggplot(data=df, aes(x=col1,y=col2)) +
+       geom_point() + 
+       geom_smooth()
+
+#color -> if we want to customize the color we have to do in aes():
+viz <- ggplot(data=airquality, aes(x=Ozone, y=Temp)) +
+       geom_point(aes(color=Month)) + 
+       geom_smooth()
+ #Inside our movies dataset, we have a column named nrOfGenre that describes the number of genres a movie is assigned.
+#For example "Actios" equals to 2.
+viz <- ggplot(data=movies, aes(x=imdbRating, y=nrOfWins)) + geom_point(aes(color=nrOfGenre)) 
+#There is a bar to indicate the nrOfGenre and different colors.
+
+  #color dark is not is aes because we are deciding manually
+viz <- ggplot(data=airquality, aes(x=Ozone, y=Temp)) +
+       geom_point(color="darkred")  
+
+# Here are more aesthetics for the geom_point() layer -> x, y, alpha, color, fill, group, shape, size, stroke. (in geom_point)
+alpha = 0.5 #Opacity
+viz <- ggplot(data=movies, aes(x=imdbRating, y=nrOfWins)) +
+       geom_point(aes(color=nrOfGenre), alpha = 0.5) #outside aes 
+#labs() -> title, subtitle, caption
+viz <- ggplot(data=movies, aes(x=imdbRating, y=nrOfWins)) +
+       geom_point(aes(color=nrOfGenre), alpha=0.5) +
+       labs(title="Movie Ratings Vs Award Wins", subtitle="From IMDB dataset", x="Movie Rating", y="Number of Award Wins", color="Number of Genre")
+
+#The bar chart -> showing the distribution of categorical data
+#The geom_bar() layer adds a bar chart to the canvas.
+bar <- ggplot(books, aes(x=Language)) + geom_bar()
+bar
+ggsave("bar-example.png")
+
+options(scipen=10000) #removes scientific notation
+
+scale_x_reverse(lim=c(800000,0)) #  Reverse x
+
+geom_line() #line graph
+
+#MAXIMUM -> max()
+millenia_max <- max(noaa_data$CO2_ppmv) 
+#millenia_max = name of new variable
+#noaa_data = data
+#CO2_ppmv = column name
+
+#HORIZONTAL LINE -> geom_hline()
+viz + geom_hline(aes(yintercept=somevalue, linetype="Some string"))
+#linetype is a comment in horizontal line
+
+#summarize() -> returns a new data frame containing the desired calculation
+df %>% summarize(var_name = command(column_name))
+
+#median
+customers %>% select(age) # c(23, 25, 31, 35, 35, 46, 62)
+customers %>% summarize(median_age = median(age)) # 35
+
+#different states
+shipments %>% select(states) # c('CA', 'CA', 'CA', 'CA', 'NY', 'NY', 'NJ', 'NJ', 'NJ', 'NJ', 'NJ', 'NJ', 'NJ')
+shipments %>% summarize(n_distinct_states = n_distinct(states)) # 3
+
+#standard deviation
+inventory %>% select(price) # c(31, 23, 30, 27, 30, 22, 27, 22, 39, 27, 36)    
+inventory %>% summarize(sd_price = sd(price)) # 5.465595 
+
+# Command      -      Description
+# mean()  -> Average of all values in column
+# median()  -> Median value of column
+# sd()  -> Standard deviation
+# var()  -> Variance
+# min()  -> Minimum value
+# max()  -> Maximum value
+# IQR()  -> Interquartile range
+# n_distinct()  -> Number of unique values
+# sum()  -> Sum values
+
+most_expensive <- orders %>% summarize(most_expensive = max(price, na.rm = TRUE)) #if we want not to take into consideration NA value
+
+# GROUP_BY() -> if we want an average of each students of all assigments
+
+#GROUP_BY() + SUMMARIZE()
+grades <- df %>% group_by(student) %>% summarize(mean_grade = mean(grade))
+#multiple
+df %>% group_by(location,day_of_week) %>% summarize(mean_total_sales = mean(total_sales))
+
+#shoe_type and shoe_color combinations are particularly popular this year (for example, blue ballet flats are all the rage in Paris). Find the total number of shoes of each shoe_type/shoe_color combination purchased
+shoe_counts <- orders %>% group_by(shoe_type, shoe_color)  %>% summarize(count = n())
+
+shoe_prices <- orders %>% group_by(shoe_type, shoe_material)  %>% summarize(media = mean(price, na.rm = TRUE))
+
+#group_by() -> summarize() or filter() or mutate()
+
+# GROUP_BY() + FILTER()
+enrollments %>% group_by(course) %>% filter(mean(quiz_score) < 80)
+#group_by() groups the data frame by course into two groups: learn-r and learn-python
+#filter() will keep all the rows of the data frame whose per-group (per-course) average quiz_score is less than 80
+
+# Group orders by shoe_type and filter to only include orders with a shoe_type that has been ordered more than 16 times
+most_pop_orders <- orders %>% group_by(shoe_type) %>% filter( n() > 16) 
+
+# GROUP_BY() + MUTATE()
+#You want to add a new column to the data frame that stores the difference between a row’s quiz_score and the average quiz_score for that row’s course. 
+enrollments %>% group_by(course) %>% mutate(diff_from_course_mean = quiz_score - mean(quiz_score))
+
+# summarize(count = n()) -> cuenta  
+```

@@ -1,0 +1,51 @@
+projest package
+===============
+
+aminoacid.aminoacid module
+------------------------
+
+.. automodule:: aminoacid.aminoacid
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+atom.atom module
+-------------------
+
+.. automodule:: atom.atom
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+chain.chain module
+--------------------
+
+.. automodule:: chain.chain
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+extract\_atom\_information.extract\_atoms\_information module
+------------------------------------------
+
+.. automodule:: extract_atom_information.extract_atoms_information
+    :members:
+    :undoc-members:
+    :show.inheritance:
+
+modul.model module
+--------------------
+
+.. automodule:: modul.model
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+protein.protein module
+----------------------
+
+.. automodule:: protein.protein
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

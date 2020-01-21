@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>atom &#8212; Projest 0.0.7 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="extract_atoms_information" href="loadInformation.html" />
+    <link rel="prev" title="aminoacid" href="aminoacid.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="loadInformation.html" title="extract_atoms_information"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="aminoacid.html" title="aminoacid"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Projest 0.0.7 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="atom">
+<h1>atom<a class="headerlink" href="#atom" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<a class="reference internal image-reference" href="_images/atom.jpeg"><img alt="alternate text" class="align-center" src="_images/atom.jpeg" style="width: 500px; height: 500px;" /></a>
+<div class="section" id="module-atom">
+<span id="information"></span><h2>information<a class="headerlink" href="#module-atom" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="atom.Atom">
+<em class="property">class </em><code class="descclassname">atom.</code><code class="descname">Atom</code><span class="sig-paren">(</span><em>atom_name</em>, <em>x_coordinate</em>, <em>y_coordinate</em>, <em>z_coordinate</em>, <em>occupancy</em>, <em>temperature_factor</em>, <em>element_symbol</em><span class="sig-paren">)</span><a class="headerlink" href="#atom.Atom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<ul class="simple">
+<li><strong>atom_name:</strong> line[12:16] from pdb file. You obtain all the name of the atom. C-α -&gt; alfa carbon. String.</li>
+<li><strong>x_coordinate:</strong> line[30:38] from pdb file. X coordinate. Float.</li>
+<li><strong>y_coordinate:</strong> line[38:46] from pdb file. Y coordinate. Float.</li>
+<li><strong>z_coordinate:</strong> line[46:54] from pdb file. Z coordinate. Float.</li>
+<li><strong>occupancy:</strong> line[54:60] from pdb file. 1 corresponds to 100% occupancy. Float.</li>
+<li><strong>temperature_factor:</strong> line[60:66] from pdb file. The temperature for each atom in the structure. Float.</li>
+<li><strong>element_symbol:</strong> line[76:78] from pdb file. The element of the atom. String.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">atom</a><ul>
+<li><a class="reference internal" href="#module-atom">information</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="aminoacid.html"
+                        title="previous chapter">aminoacid</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="loadInformation.html"
+                        title="next chapter">extract_atoms_information</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/atom.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="loadInformation.html" title="extract_atoms_information"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="aminoacid.html" title="aminoacid"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Projest 0.0.7 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Esther Vendrell.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

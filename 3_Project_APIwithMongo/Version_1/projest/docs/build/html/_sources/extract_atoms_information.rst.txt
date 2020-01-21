@@ -1,0 +1,14 @@
+extract atoms information
+=========================
+
+.. toctree::
+   :maxdepth: 6
+
+
+extractatomsinformation module
+--------------------------------
+
+.. automodule:: extract_atoms_information
+    :members:
+    :undoc-members:
+    :show.inheritance:

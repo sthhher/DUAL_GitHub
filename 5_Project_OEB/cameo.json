@@ -1,0 +1,239 @@
+{
+    "_id": "CAMEO",
+    "_schema": "https://openebench.bsc.es/vre/tool-schema",
+    "name": "CAMEO",
+    "title": "COMING SOON",
+    "short_description": "Continuous Automated Model EvaluatiOn - critical assessment of structure prediction",
+    "long_description": "",
+    "owner": {
+        "institution": "Instituto Carlos III - Bioiformatics Unit",
+        "author": "Sara Monz\u00f3n, Isabel Cuesta",
+        "contact": "smonzon@isciii.es"
+    },
+    "external": true,
+    "keywords": [
+        "3D_modeling"
+    ],
+    "keywords_tool": [],
+    "status": 2,
+    "infrastructure": {
+        "memory": 2,
+        "cpus": 1,
+        "executable": "\/home\/vre\/projects\/vre-process_nextflow-executor\/VRE_NF_RUNNER",
+        "clouds": {
+            "life-bsc": {
+                "launcher": "SGE",
+                "queue": "default.q"
+            }
+        }
+    },
+    "input_files": [
+        {
+            "name": "input",
+            "description": "Tree to evaluate",
+            "help": "Input file containing the phylogenetic tree to be evaluated",
+            "file_type": [
+                "NEXUS",
+                "NEWICK"
+            ],
+            "data_type": [
+                "participant"
+            ],
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "input_files_public_dir": [
+        {
+            "name": "goldstandard_dir",
+            "description": "Folder where reference data is located",
+            "help": "Folder where metrics reference data is located",
+            "type": "hidden",
+            "value": "metrics_reference\/GMI_OD\/",
+            "file_type": [
+                "TAR"
+            ],
+            "data_type": [
+                "metrics_reference"
+            ],
+            "required": true,
+            "allow_multiple": false
+        },
+        {
+            "name": "assess_dir",
+            "description": "Folder where golden data is located",
+            "help": "Folder where golden data is located",
+            "type": "hidden",
+            "value": "aggreggation\/GMI_OD\/",
+            "file_type": [
+                "TAR"
+            ],
+            "data_type": [
+                "aggregation"
+            ],
+            "required": true,
+            "allow_multiple": false
+        },
+        {
+            "name": "public_ref_dir",
+            "description": "Folder where golden data is located",
+            "help": "Folder where golden data is located",
+            "type": "hidden",
+            "value": "public_reference\/GMI_OD\/",
+            "file_type": [
+                "TAR"
+            ],
+            "data_type": [
+                "public_reference"
+            ],
+            "required": true,
+            "allow_multiple": false
+        }
+    ],
+    "input_files_combinations": [
+        {
+            "description": "Evaluate Tree",
+            "input_files": [
+                "input"
+            ]
+        }
+    ],
+    "input_files_combinations_internal": [
+        [
+            {
+                "input": "+"
+            }
+        ]
+    ],
+    "arguments": [
+        {
+            "name": "nextflow_repo_uri",
+            "description": "Nextflow Repository URI",
+            "help": "Nextflow Repository (i.e https:\/\/github.com\/prj\/reponame)",
+            "type": "hidden",
+            "value": "https:\/\/github.com\/javi-gv94\/openebench_gmi",
+            "required": true
+        },
+        {
+            "name": "nextflow_repo_tag",
+            "description": "Nextflow Repository tag",
+            "help": "Nextflow Repository Tag version",
+            "type": "hidden",
+            "value": "adc8fde692a0d76c3c1491247c11a42a7006a790",
+            "required": true
+        },
+        {
+            "name": "event_id",
+            "description": "Benchmarking Event Identifier",
+            "help": "Identifier for the benchmarking event",
+            "type": "string",
+            "required": true,
+            "default": ""
+        },
+        {
+            "name": "participant_id",
+            "description": "Participant Id.",
+            "help": "The participant identifier must be provided to you by your challenge coordinator",
+            "type": "string",
+            "required": true,
+            "default": ""
+        },
+        {
+            "name": "tree_format",
+            "description": "Tree format",
+            "help": "Format of the tree to be evaluated",
+            "type": "enum",
+            "required": true,
+            "default": "",
+            "enum_items": {
+                "name": [
+                    "nexus",
+                    "newick"
+                ],
+                "description": [
+                    "nexus",
+                    "newick"
+                ]
+            }
+        }
+    ],
+    "output_files": [
+        {
+            "name": "metrics",
+            "required": true,
+            "allow_multiple": true,
+            "file": {
+                "file_type": "JSON",
+                "data_type": "assessment",
+                "compressed": "null",
+                "meta_data": {
+                    "description": "Metrics derivated from the given input data",
+                    "tool": "GMI_OD",
+                    "visible": true
+                }
+            }
+        },
+        {
+            "name": "tar_view",
+            "required": true,
+            "allow_multiple": false,
+            "custom_visualizer": true,
+            "file": {
+                "file_type": "TAR",
+                "data_type": "tool_statistics",
+                "compressed": "gzip",
+                "meta_data": {
+                    "description": "Data for metrics visualizer",
+                    "tool": "GMI_OD",
+                    "visible": false
+                }
+            }
+        },
+        {
+            "name": "tar_nf_stats",
+            "required": false,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "TAR",
+                "data_type": "configuration_file",
+                "compressed": "gzip",
+                "meta_data": {
+                    "description": "Execution monitoring and logging data",
+                    "tool": "GMI_OD",
+                    "visible": true
+                }
+            }
+        },
+        {
+            "name": "tar_other",
+            "required": false,
+            "allow_multiple": false,
+            "file": {
+                "file_type": "TAR",
+                "data_type": "configuration_file",
+                "compressed": "gzip",
+                "meta_data": {
+                    "description": "Other execution associated data",
+                    "tool": "GMI_OD",
+                    "visible": true
+                }
+            }
+        },
+        {
+            "name": "report_images",
+            "required": false,
+            "allow_multiple": true,
+            "file": {
+                "file_type": "IMG",
+                "data_type": "report_image",
+                "meta_data": {
+                    "description": "Execution monitoring and logging images",
+                    "tool": "GMI_OD",
+                    "visible": true
+                }
+            }
+        }
+    ],
+    "has_custom_viewer": true
+}
+
