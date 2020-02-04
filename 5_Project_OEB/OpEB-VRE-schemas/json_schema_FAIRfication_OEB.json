@@ -146,88 +146,90 @@
     "input_files_public_dir": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "help": {
-            "type": "string",
-            "default": null
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "enum",
-              "enum_multiple",
-              "hidden"
-            ]
-          },
-          "default": {
-            "type": ["integer", "string", "boolean", "number", "array"],
-            "default": "null"
-          },
-          "value": {
-            "type": ["integer", "string", "boolean", "number", "array"],
-            "default": "null"
-          },
-          "enum_items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "array"
+        "allOf":[
+          {"type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "help": {
+              "type": "string",
+              "default": null
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "enum",
+                "enum_multiple",
+                "hidden"
+              ]
+            },
+            "default": {
+              "type": ["integer", "string", "boolean", "number", "array"],
+              "default": "null"
+            },
+            "value": {
+              "type": ["integer", "string", "boolean", "number", "array"],
+              "default": "null"
+            },
+            "enum_items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "array"
+                },
+                "description": {
+                  "type": "array"
+                }
               },
-              "description": {
-                "type": "array"
+              "required": [
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "file_type": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format":"term",
+                "ontology": "https://w3id.org/oebDataFormats",
+                "ancestors": "https://w3id.org/oebDataFormats/FormatDatasets",
+                "matchType": "label"
               }
             },
-            "required": [
-              "name"
-            ],
-            "additionalProperties": false
-          },
-          "file_type": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format":"term",
-              "ontology": "https://w3id.org/oebDataFormats",
-              "ancestors": "https://w3id.org/oebDataFormats/FormatDatasets",
-              "matchType": "label"
+            "data_type": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format":"term",
+                "ontology": "https://w3id.org/oebDatasets/complete",
+                "ancestors": "https://w3id.org/oebDatasets/dataset",
+                "matchType": "label"
+              }
+            },
+            "required": {
+              "type": "boolean",
+              "default": true
+            },
+            "allow_multiple": {
+              "type": "boolean",
+              "default": false
             }
           },
-          "data_type": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format":"term",
-              "ontology": "https://w3id.org/oebDatasets/complete",
-              "ancestors": "https://w3id.org/oebDatasets/dataset",
-              "matchType": "label"
-            }
-          },
-          "required": {
-            "type": "boolean",
-            "default": true
-          },
-          "allow_multiple": {
-            "type": "boolean",
-            "default": false
-          }
-        },
-        "required": [
-          "name",
-          "description",
-          "file_type",
-          "data_type",
-          "required",
-          "allow_multiple"
-        ],
-        "additionalProperties": false,
-        "$ref":"#/definitions/restrictions"
+          "required": [
+            "name",
+            "description",
+            "file_type",
+            "data_type",
+            "required",
+            "allow_multiple"
+          ],
+          "additionalProperties": false},
+          {"$ref":"#/definitions/restrictions"}
+        ]
       }
     },
     "input_files_combinations": {
@@ -266,75 +268,77 @@
     "arguments": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "pattern": "^([a-zA-Z0-9_]*)$"
-          },
-          "description": {
-            "type": "string"
-          },
-          "help": {
-            "type": "string",
-            "default": null
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "integer",
-              "number",
-              "string",
-              "enum",
-              "enum_multiple",
-              "boolean",
-              "hidden"
-            ]
-          },
-          "default": {
-            "type": ["integer", "string", "boolean", "number", "array"],
-            "default": "null"
-          },
-          "value": {
-            "type": ["integer", "string", "boolean", "number", "array"],
-            "default": "null"
-          },
-          "enum_items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "array"
-              },
-              "description": {
-                "type": "array"
-              }
+        "allOf": [
+          {"type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "pattern": "^([a-zA-Z0-9_]*)$"
             },
-            "required": [
-              "name"
-            ]
+            "description": {
+              "type": "string"
+            },
+            "help": {
+              "type": "string",
+              "default": null
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "integer",
+                "number",
+                "string",
+                "enum",
+                "enum_multiple",
+                "boolean",
+                "hidden"
+              ]
+            },
+            "default": {
+              "type": ["integer", "string", "boolean", "number", "array"],
+              "default": "null"
+            },
+            "value": {
+              "type": ["integer", "string", "boolean", "number", "array"],
+              "default": "null"
+            },
+            "enum_items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "array"
+                },
+                "description": {
+                  "type": "array"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            },
+            "maximum": {
+              "type": "integer"
+            },
+            "minimum": {
+              "type": "integer"
+            },
+            "required": {
+              "type": "boolean",
+              "default": true
+            },
+            "allow_multiple": {
+              "type": "boolean",
+              "default": false
+            }
           },
-          "maximum": {
-            "type": "integer"
-          },
-          "minimum": {
-            "type": "integer"
-          },
-          "required": {
-            "type": "boolean",
-            "default": true
-          },
-          "allow_multiple": {
-            "type": "boolean",
-            "default": false
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "name",
-          "description",
-          "type"
-        ],
-        "$ref":"#/definitions/restrictions"
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "description",
+            "type"
+          ]},
+          {"$ref":"#/definitions/restrictions"}
+        ]
       }
     },
     "output_files": {
