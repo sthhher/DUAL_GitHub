@@ -1,0 +1,10 @@
+Que hacer?	
+	- Añadir redes epidemiologicas para ver cuales se han descrito en las distintas polaciones (saber de que articulo viene - que se pueda linkar)
+	- Poder hacer una busqueda de un gen o fármaco para ver las enfermedades asociadas a el y las interacciones entre subgrupo
+
+--------------------------------------------------------------------------------------------------------------------
+1. Cambiar estructural base de datos
+2. Comprobar que se puede preguntar a la API y que esta funciona correctamente
+3. En el lado de la visualizacion: poder conmutar de una red a otra.
+4. Mostrar combinaciones (inclusiva o exclusiva)-> mostrar lo que hay en comun o lo que no hay en comun y tambien ver la parte diferenciar, que es lo que ocurre en una red y en otra no.
+

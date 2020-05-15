@@ -1,0 +1,66 @@
+=> I need python 3.6
+
+> git clone https://github.com/inab/disease_perception.git
+> cd disease_perception/DB/
+
+
+## DB -> INSTALL.md
+--------------------
+> sudo apt-get install python3.6-pip python3.6-venv
+> python3.6 -m venv .pyDBenv
+> source .pyDBenv/bin/activate
+> pip install --upgrade pip
+> pip install -r requirements.txt -c constraints.txt
+> deactivate
+
+
+## DB -> README.md
+-------------------
+> source .pyDBenv/bin/activate
+> python create_db.py
+> cd ../REST
+> pip install Flask
+> pip install flask-restplus
+> pip install flask-cors
+> pip install flask-compress
+> python como_network.py
+En la web: localhost:5000/api
+
+#REST -> INSTALL.md
+--------------------
+> python3.6 -m venv .pyRESTenv
+> source .pyRESTenv/bin/activate
+> pip install --upgrade pip
+> pip install -r requirements.txt -c constraints.txt
+> if [ ! -d .pyRESTenv/lib/python3.6/site-packages/flask_restplus/static ] ; then
+ 	wget --content-disposition https://github.com/swagger-api/swagger-ui/archive/v3.14.2.tar.gz
+	tar xf swagger-ui-3.14.2.tar.gz swagger-ui-3.14.2/dist
+	mv swagger-ui-3.14.2/dist .pyRESTenv/lib/python3.6/site-packages/flask_restplus/static
+	rm -r swagger-ui-3.14.2*
+fi
+> sudo apt install apache2 libapache2-mod-fcgid
+> sudo a2enmod mod-fcgid
+> sudo service apache2 restart
+> sudo service apache2 enable
+
+
+
+## FRONTEND -> INSTALL.md
+--------------------------
+> source .pyDBenv/bin/activate
+> cd FRONTEND/
+> npm install --no-save npm
+> PATH="$(npm bin):${PATH}"
+> export PATH
+> npm install --no-save yarn
+> yarn --frozen-lockfile
+> webpack -p --progress --colors
+
+
+
+## FRONTEND -> README.md
+--------------------------
+> cd ../REST
+> source .pyDBenv/bin/activate
+> python como_network.py
+
