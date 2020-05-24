@@ -140,12 +140,49 @@
         </rdfs:subClassOf>
         <rdfs:label>data_log</rdfs:label>
     </owl:Class>
+
+    <!-- https://w3id.org/oebDatasets/validated_participant -->
+
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/validated_participant">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/oebDatasets/dataset"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/oebDatasets/file_type"/>
+                        <owl:allValuesFrom rdf:resource="http://edamontology.org/format_3464"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label>validated_participant</rdfs:label>
+    </owl:Class>
+
+    
+    <!-- https://w3id.org/oebDatasets/workflow_stats -->
+
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/workflow_stats">
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/oebDatasets/dataset"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/oebDatasets/file_type"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/oebDataFormats/TAR"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label>workflow_stats</rdfs:label>
+    </owl:Class>
     
 
 
     <!-- https://w3id.org/oebDatasets/dataset -->
 
-    <owl:Class rdf:about="https://w3id.org/oebDatasets/dataset"/>
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/dataset">
+        <rdfs:label>dataset</rdfs:label>
+    </owl:Class>
     
 
 
@@ -368,6 +405,8 @@
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/assessment"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/configuration_file"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/data_log"/>
+            <rdf:Description rdf:about="https://w3id.org/oebDatasets/validated_participant"/>
+            <rdf:Description rdf:about="https://w3id.org/oebDatasets/workflow_stats"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/input"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/metrics_reference"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/nextflow_workflow_config"/>

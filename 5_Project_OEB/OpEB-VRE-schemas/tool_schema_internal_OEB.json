@@ -6,8 +6,7 @@
   "description": "Specification of OEB tools as required for VRE",
   "properties": {
     "_id": {
-      "type": "string",
-      "pattern": "^([a-zA-Z0-9_]+)$"
+      "type": "string"
     },
     "name": {
       "type": "string"
@@ -160,7 +159,7 @@
               "type": "string",
               "enum": [
                 "enum",
-                "enum_multiple",
+                "enum_mult",
                 "hidden"
               ]
             },
@@ -221,6 +220,8 @@
                   "aggregation",
                   "participant",
                   "public_reference",
+                  "workflow_stats",
+                  "validated_participant",
                   "input",
                   "report_image",
                   "configuration_file",
@@ -307,7 +308,7 @@
                 "number",
                 "string",
                 "enum",
-                "enum_multiple",
+                "enum_mult",
                 "boolean",
                 "hidden"
               ]
@@ -409,18 +410,19 @@
                   "public_reference",
                   "input",
                   "report_image",
+                  "workflow_stats",
+                  "validated_participant",
                   "configuration_file",
                   null
                 ]
               },
               "file_path": {
-                "type": "string",
-                "format": "json-pointer"
+                "type": "string"
               },
               "compressed": {
-                "type": "string",
+                "type": ["null", "string"],
                 "enum": [
-                  "null",
+                  null,
                   "gzip",
                   "zip"
                 ]
@@ -578,7 +580,7 @@
           "then": {"properties": {"default": {"type": ["number"]}}}
         },
         {
-          "if": {"properties": {"type": {"enum": ["enum_multiple"]}}},
+          "if": {"properties": {"type": {"enum": ["enum_mult"]}}},
           "then": {"properties": {"default": {"type": ["array"]}}}
         },
         {
@@ -587,7 +589,7 @@
           "else": {"not": {"required": ["value"]}}
         },
         {
-          "if": {"properties": {"type": {"enum": ["enum", "enum_multiple"]}}},
+          "if": {"properties": {"type": {"enum": ["enum", "enum_mult"]}}},
           "then": {"required":["enum_items"]},
           "else": {"not": {"required": ["enum_items"]}}
         }
@@ -610,7 +612,7 @@
             "type": "string",
             "enum": [
               "enum",
-              "enum_multiple",
+              "enum_mult",
               "hidden"
             ]
           },
@@ -672,6 +674,8 @@
                 "participant",
                 "public_reference",
                 "input",
+                "workflow_stats",
+                "validated_participant",
                 "report_image",
                 "configuration_file",
                 null

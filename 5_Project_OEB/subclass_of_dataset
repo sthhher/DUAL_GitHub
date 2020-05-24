@@ -1,0 +1,47 @@
+#aggregation
+dataset
+ and ((file_type only JSON) or (file_type only TAR))
+
+#assesment
+dataset
+ and (file_type only JSON)
+
+#configuration_file
+dataset
+ and ((file_type only 'plain text format (unformatted)') or (file_type only JSON))
+
+#data_log
+dataset
+ and (file_type only ERR)
+
+#input
+dataset
+ and ((file_type only JSON) or (file_type only TAR))
+
+#metrics_reference
+dataset
+ and ((file_type only PDB) or (file_type only XML) or (file_type only JSON) or (file_type only TAR))
+
+#nextflow_workflow_config
+dataset
+ and (file_type only NF)
+
+#nextflow_workflow_main
+dataset
+ and (file_type only NF)
+
+#participant
+dataset
+ and ((file_type only newick) or (file_type only 'Nexus format') or (file_type only 'plain text format (unformatted)'))
+
+#public_reference
+dataset
+ and ((file_type only PDB) or (file_type only XML) or (file_type only JSON) or (file_type only TAR))
+
+#report_image
+dataset
+ and (file_type only 'Image format')
+
+#tool_statistics
+dataset
+ and (file_type only TAR)

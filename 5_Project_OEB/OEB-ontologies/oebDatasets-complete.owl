@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<rdf:RDF xmlns="https://w3id.org/oebDatasets/complete#"
-     xml:base="https://w3id.org/oebDatasets/complete"
+<rdf:RDF xmlns="https://w3id.org/oebDatasets/complete/"
+     xml:base="https://w3id.org/oebDatasets/complete/"
      xmlns:dc="http://purl.org/dc/elements/1.1/"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -56760,7 +56760,6 @@ Trim sequences (typically from an automated DNA sequencer) to remove sequence-sp
     <!-- https://w3id.org/oebDataFormats/ERR -->
 
     <owl:Class rdf:about="https://w3id.org/oebDataFormats/ERR">
-        <owl:equivalentClass rdf:resource="https://w3id.org/oebDataFormats/LOG"/>
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
@@ -56802,6 +56801,7 @@ Trim sequences (typically from an automated DNA sequencer) to remove sequence-sp
 
     <owl:Class rdf:about="https://w3id.org/oebDataFormats/FormatDatasets">
         <rdfs:subClassOf rdf:resource="http://edamontology.org/format_1915"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FormatDatasets</rdfs:comment>
     </owl:Class>
     
 
@@ -57026,7 +57026,9 @@ Trim sequences (typically from an automated DNA sequencer) to remove sequence-sp
 
     <!-- https://w3id.org/oebDatasets/dataset -->
 
-    <owl:Class rdf:about="https://w3id.org/oebDatasets/dataset"/>
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/dataset">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dataset</rdfs:comment>
+    </owl:Class>
     
 
 
@@ -57242,6 +57244,52 @@ Trim sequences (typically from an automated DNA sequencer) to remove sequence-sp
     
 
 
+    <!-- https://w3id.org/oebDatasets/validated_participant -->
+
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/validated_participant">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/oebDatasets/dataset"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/oebDatasets/dataset"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/oebDatasets/file_type"/>
+                        <owl:allValuesFrom rdf:resource="http://edamontology.org/format_3464"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label>validated_participant</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- https://w3id.org/oebDatasets/validation -->
+
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/validation"/>
+    
+
+
+    <!-- https://w3id.org/oebDatasets/workflow_stats -->
+
+    <owl:Class rdf:about="https://w3id.org/oebDatasets/workflow_stats">
+        <rdfs:subClassOf rdf:resource="https://w3id.org/oebDatasets/dataset"/>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="https://w3id.org/oebDatasets/dataset"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="https://w3id.org/oebDatasets/file_type"/>
+                        <owl:allValuesFrom rdf:resource="https://w3id.org/oebDataFormats/TAR"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:label>workflow_stats</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -57260,8 +57308,8 @@ Trim sequences (typically from an automated DNA sequencer) to remove sequence-sp
         <rdfs:label>Information standard</rdfs:label>
     </rdf:Description>
     <rdf:Description rdf:about="http://edamontology.org/thematic_editor">
-        <oboInOwl:hasDefinition>Name of thematic editor (http://biotools.readthedocs.io/en/latest/governance.html#registry-editors) responsible for this concept and its children.</oboInOwl:hasDefinition>
         <oboInOwl:inSubset>concept_properties</oboInOwl:inSubset>
+        <oboInOwl:hasDefinition>Name of thematic editor (http://biotools.readthedocs.io/en/latest/governance.html#registry-editors) responsible for this concept and its children.</oboInOwl:hasDefinition>
         <obo:is_metadata_tag>true</obo:is_metadata_tag>
         <rdfs:label>thematic_editor</rdfs:label>
     </rdf:Description>
@@ -57294,6 +57342,8 @@ Trim sequences (typically from an automated DNA sequencer) to remove sequence-sp
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/public_reference"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/report_image"/>
             <rdf:Description rdf:about="https://w3id.org/oebDatasets/tool_statistics"/>
+            <rdf:Description rdf:about="https://w3id.org/oebDatasets/validation"/>
+            <rdf:Description rdf:about="https://w3id.org/oebDatasets/workflow_stats"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

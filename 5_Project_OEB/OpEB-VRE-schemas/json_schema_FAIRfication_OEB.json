@@ -163,7 +163,7 @@
               "type": "string",
               "enum": [
                 "enum",
-                "enum_multiple",
+                "enum_mult",
                 "hidden"
               ]
             },
@@ -289,7 +289,7 @@
                 "number",
                 "string",
                 "enum",
-                "enum_multiple",
+                "enum_mult",
                 "boolean",
                 "hidden"
               ]
@@ -375,13 +375,12 @@
                 "matchType": "label"
               },
               "file_path": {
-                "type": "string",
-                "format": "json-pointer"
+                "type": "string"
               },
               "compressed": {
-                "type": "string",
+                "type": ["null", "string"],
                 "enum": [
-                  "null",
+                  null,
                   "gzip",
                   "zip"
                 ]
@@ -540,7 +539,7 @@
           "then": {"properties": {"default": {"type": ["number"]}}}
         },
         {
-          "if": {"properties": {"type": {"enum": ["enum_multiple"]}}},
+          "if": {"properties": {"type": {"enum": ["enum_mult"]}}},
           "then": {"properties": {"default": {"type": ["array"]}}}
         },
         {
@@ -549,7 +548,7 @@
           "else": {"not": {"required": ["value"]}}
         },
         {
-          "if": {"properties": {"type": {"enum": ["enum", "enum_multiple"]}}},
+          "if": {"properties": {"type": {"enum": ["enum", "enum_mult"]}}},
           "then": {"required":["enum_items"]},
           "else": {"not": {"required": ["enum_items"]}}
         }
@@ -572,7 +571,7 @@
             "type": "string",
             "enum": [
               "enum",
-              "enum_multiple",
+              "enum_mult",
               "hidden"
             ]
           },
